@@ -35,8 +35,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee updateEmployeeById(Employee employeeUpdate, Integer id) {
 
-        employeeUpdate =  employeeRepository.findById(id).orElseThrow(()-> new EmployeeNotFoundException(id));
-        Employee employee = new Employee();
+        Employee employee =  employeeRepository.findById(id).orElseThrow(()-> new EmployeeNotFoundException(id));
         employee.setName(employeeUpdate.getName());
         employee.setEmail(employeeUpdate.getEmail());
         return employeeRepository.save(employee);

@@ -6,8 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-
+import javax.validation.Valid;
+import javax.validation.ValidationException;
 import java.util.List;
 
 @RestController
@@ -24,7 +28,8 @@ public class EmployeeController {
     }
 
     @RequestMapping(value= "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
+    public ResponseEntity<Employee> createEmployee(@Valid @RequestBody Employee employee) {
+
         return new ResponseEntity<>(employeeService.createEmployee(employee), HttpStatus.CREATED);
     }
 
@@ -39,5 +44,11 @@ public class EmployeeController {
             return new ResponseEntity<>(employeeService.deleteEmployeeById(id), HttpStatus.OK);
         }
         return new ResponseEntity<>(Boolean.FALSE, HttpStatus.BAD_REQUEST);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Employee> updateById(@PathVariable("id") Integer id, @RequestBody Employee employee) {
+
+        return new ResponseEntity<>( employeeService.updateEmployeeById(employee, id), HttpStatus.OK);
     }
 }
