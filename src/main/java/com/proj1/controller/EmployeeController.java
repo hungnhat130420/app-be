@@ -30,7 +30,7 @@ public class EmployeeController {
     @RequestMapping(value= "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Employee> createEmployee(@Valid @RequestBody Employee employee) {
 
-        return new ResponseEntity<>(employeeService.createEmployee(employee), HttpStatus.CREATED);
+        return new ResponseEntity<>(employeeService.createEmployee(employee), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
