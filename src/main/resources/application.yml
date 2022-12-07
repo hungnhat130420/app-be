@@ -1,16 +1,37 @@
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/employee_system
+    url: jdbc:postgresql://postgres:5433/employee_system
     username: postgres
     password: 123456
 
   jpa:
     hibernate:
       show-sql: true
-      ddl-auto: update
+      ddl-auto: create
 
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
+
+#  security:
+#    user:
+#      name: hung
+#      password: 123
+
+
+#  main:
+#    allow-bean-definition-overriding: true
+#
+#  redis:
+#    host: 127.0.0.1
+#    password: redispw
+#    port: 6379
+#    lettuce:
+#      shutdown-timeout: 30000
+#      pool:
+#        max-active: 30
+#        max-idle: 8
+#        min-idle: 0
+
